@@ -1,0 +1,14 @@
+@switch (renderAs) {
+  @case ('h1') {
+    <h1 [class]="classes"><ng-content /></h1>
+  }
+  @case ('h2') {
+    <h2 [class]="classes"><ng-content /></h2>
+  }
+  @case ('span') {
+    <span [class]="classes"><ng-content /></span>
+  }
+  @default {
+    <p [class]="classes"><ng-content /></p>
+  }
+}

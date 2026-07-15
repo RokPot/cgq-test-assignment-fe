@@ -1,10 +1,18 @@
-import { Component } from '@angular/core';
-import { RouterLink } from '@angular/router';
+import { Component, inject } from '@angular/core';
+import { Router, RouterLink } from '@angular/router';
+import { ButtonComponent } from '@ui/button/button.component';
+import { TypographyComponent } from '@ui/typography/typography.component';
 
 @Component({
   selector: 'app-error-page',
   standalone: true,
-  imports: [RouterLink],
+  imports: [RouterLink, TypographyComponent, ButtonComponent],
   templateUrl: './error-page.component.html',
 })
-export class ErrorPageComponent {}
+export class ErrorPageComponent {
+  router = inject(Router);
+
+  navigateToHome(): void {
+    this.router.navigate(['/']);
+  }
+}

@@ -1,12 +1,14 @@
 {
-  "printWidth": 100,
+  "printWidth": 80,
   "singleQuote": true,
+  "tailwindFunctions": ["cva"],
   "plugins": ["prettier-plugin-tailwindcss"],
   "overrides": [
     {
       "files": "*.html",
       "options": {
-        "parser": "angular"
+        "parser": "angular",
+        "htmlWhitespaceSensitivity": "ignore"
       }
     }
   ]

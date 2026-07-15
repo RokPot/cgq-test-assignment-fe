@@ -1,4 +1,12 @@
-<div>
-  <h1>Something went wrong</h1>
-  <a routerLink="/">Go home</a>
+<div class="flex h-screen w-screen flex-col items-center justify-center">
+  <app-typography
+    variant="body-1"
+    className="font-bold text-red-500"
+    class="mb-2"
+  >
+    Something went wrong
+  </app-typography>
+  <app-button (click)="navigateToHome()">
+    <app-typography variant="body-1">Go home</app-typography>
+  </app-button>
 </div>
