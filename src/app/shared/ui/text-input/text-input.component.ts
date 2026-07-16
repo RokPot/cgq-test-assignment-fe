@@ -1,7 +1,7 @@
 import { Component, Input, model } from '@angular/core';
 import { FormValueControl } from '@angular/forms/signals';
 import { input, InputVariant } from './text-input.cva';
-
+// https://angular.dev/guide/forms/signals/custom-controls#minimal-input-control
 @Component({
   selector: 'app-text-input',
   standalone: true,
