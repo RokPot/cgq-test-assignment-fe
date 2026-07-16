@@ -1,0 +1,23 @@
+<article class="group w-full rounded-lg border border-gray-300 bg-white">
+  <div
+    class="rounded-t-lg border-b border-gray-300 px-3 py-2 transition-colors group-hover:bg-gray-100"
+  >
+    <app-typography
+      variant="h1"
+      class="font-medium"
+      [innerHTML]="getScopedPackageHightlight()"
+    />
+  </div>
+  <div class="p-5">
+    <app-typography variant="body-1" class="">
+      {{ package.weeklyDownloads | numberShortener }}
+      <svg class="inline size-4 text-black" download-icon></svg>
+    </app-typography>
+    <app-typography variant="body-1" class="text-gray-400">
+      {{
+        dependencies.value()?.length || 0
+          | pluralSingular: 'dependency' : 'dependencies'
+      }}
+    </app-typography>
+  </div>
+</article>

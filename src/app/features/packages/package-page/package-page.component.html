@@ -5,8 +5,28 @@
       [formField]="searchForm.search"
       placeholder="Search..."
     />
-    <app-button variant="outlined" className="p-2!">
+    <app-button variant="outlined" className="p-2!" (click)="onReset()">
       <svg class="size-4 text-black" reset-icon></svg>
     </app-button>
   </div>
+
+  @if (packagesFacade.packages.isLoading()) {
+    <app-typography variant="body-2" class="mt-2 text-gray-500">
+      Loading packages...
+    </app-typography>
+  } @else if (packagesFacade.packages.error()) {
+    <app-typography variant="body-2" class="mt-4 text-red-500">
+      Failed to load packages
+    </app-typography>
+  } @else if (!!filteredPackages().length) {
+    <div class="mt-4 flex flex-row flex-wrap gap-2">
+      @for (package of filteredPackages(); track package.id) {
+        <app-package-card [package]="package" />
+      }
+    </div>
+  } @else if (!filteredPackages().length) {
+    <app-typography variant="body-2" class="mt-4 text-gray-500">
+      No packages found
+    </app-typography>
+  }
 </div>
