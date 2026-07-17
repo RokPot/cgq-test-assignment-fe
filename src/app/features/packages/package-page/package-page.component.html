@@ -21,7 +21,11 @@
   } @else if (!!filteredPackages().length) {
     <div class="mt-4 flex flex-row flex-wrap gap-2">
       @for (package of filteredPackages(); track package.id) {
-        <app-package-card [package]="package" />
+        <app-package-card
+          [package]="package"
+          [isDependencyOfOuterPackage]="isDependencyOfOuterPackage(package.id)"
+          (hoveredPackageDependencies)="onHoveredPackageDependencies($event)"
+        />
       }
     </div>
   } @else if (!filteredPackages().length) {

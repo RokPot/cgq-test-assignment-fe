@@ -4,6 +4,7 @@ import { ButtonComponent } from '@ui/button/button.component';
 import { TextInputComponent } from '@ui/text-input/text-input.component';
 import { TypographyComponent } from '@ui/typography/typography.component';
 import { ResetIconComponent } from '../../../../assets/icons/reset-icon.component';
+import { PackageDependenciesResponse } from '../data-access/dto/package-response.dto';
 import { PackagesFacade } from '../data-access/packages.facade';
 import { PackageCardComponent } from '../ui/package-card/package-card.component';
 
@@ -22,6 +23,10 @@ import { PackageCardComponent } from '../ui/package-card/package-card.component'
 })
 export class PackagePageComponent {
   readonly packagesFacade = inject(PackagesFacade);
+
+  hoveredDependencies = signal<PackageDependenciesResponse | undefined>(
+    undefined,
+  );
 
   readonly searchModel = signal({ search: '' });
   readonly searchForm = form(this.searchModel);
@@ -46,5 +51,14 @@ export class PackagePageComponent {
   onReset(): void {
     this.searchForm().reset({ search: '' });
     this.packagesFacade.reloadPackages();
+  }
+  onHoveredPackageDependencies(
+    dependencies: PackageDependenciesResponse,
+  ): void {
+    this.hoveredDependencies.set(dependencies);
+  }
+
+  isDependencyOfOuterPackage(packageId: string): boolean {
+    return this.hoveredDependencies()?.includes(packageId) || false;
   }
 }
